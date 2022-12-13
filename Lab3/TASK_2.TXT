@@ -1,0 +1,101 @@
+;Task 02
+;Perform addition/subtraction/division/multiplication by taking inputs from the user.
+;Note: Display appropriate messages when taking input and showing the output..
+
+
+.MODEL SMALL
+.STACK 100H
+.DATA
+A DW "ADDITION: $"
+B DW "SUBTRACTION: $"
+C DW "MULTIPLICATION: $"
+D DW "DIVISION $"
+.CODE 
+MAIN PROC
+    MOV AX, @DATA
+    MOV DS , AX
+    
+    MOV AH,1
+    INT 21H
+    MOV BL,AL
+    INT 21H
+    MOV BH,AL
+    
+    MOV DX, 0AH
+    MOV AH,2 
+    INT 21H
+    MOV DX, 0DH
+    INT 21H
+    
+    LEA DX, A
+    MOV AH,9
+    INT 21H
+    
+    MOV DL,BL
+    ADD DL,BH
+    SUB DL,48
+    MOV AH,2 
+    INT 21H
+    
+    MOV DX, 0AH
+    MOV AH,2 
+    INT 21H
+    MOV DX, 0DH
+    INT 21H
+      
+    
+    LEA DX, B
+    MOV AH,9
+    INT 21H
+    
+    MOV DL,BL
+    SUB DL,BH
+    ADD DL,48
+    MOV AH,2 
+    INT 21H
+    
+    MOV DX, 0AH
+    MOV AH,2 
+    INT 21H
+    MOV DX, 0DH
+    INT 21H
+    
+    LEA DX, C
+    MOV AH,9
+    INT 21H
+    
+    MOV AL, BL
+    SUB AL ,48
+    MOV CL,BH
+    SUB CL, 48
+    MUL CL  
+    
+    MOV AH,2
+    MOV DL ,AL
+    ADD DL,48 
+    INT 21H 
+    
+    MOV DX, 0AH
+    MOV AH,2 
+    INT 21H
+    MOV DX, 0DH
+    INT 21H
+    
+    LEA DX,D
+    MOV AH,9
+    INT 21H
+    
+    MOV AL,BL
+    MOV AH,0
+    SUB AL,48
+    MOV CL,BH
+    SUB CL,48
+    DIV CL
+    
+    MOV AH,2
+    MOV DL ,AL
+    ADD DL,48 
+    INT 21H
+    
+    MAIN ENDP 
+END MAIN
