@@ -1,0 +1,39 @@
+;Task 01
+;Take a character input and display it. Display the message "Please insert a character: "
+;when taking an input.
+
+.MODEL SMALL
+.STACK 100H
+.DATA
+A DW "PLEASE INSERT A CHARACTER: $"
+B DW "HERE IS YOUR CHAR: $"
+.CODE 
+MAIN PROC
+    MOV AX, @DATA
+    MOV DS , AX
+    
+    LEA DX, A
+    MOV AH ,9
+    INT 21H
+    
+    MOV AH,1
+    INT 21H
+    MOV BL,AL
+    
+    MOV DL,0AH
+    MOV AH,2
+    INT 21H
+    MOV DL,0DH
+    MOV AH,2
+    INT 21H 
+    
+    LEA DX,B
+    MOV AH,9
+    INT 21H
+    
+    MOV DL ,BL 
+    MOV AH,2
+    INT 21H
+    
+    MAIN ENDP 
+END MAIN
