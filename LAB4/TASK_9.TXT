@@ -2,13 +2,13 @@
 .STACK 100H
 .DATA
 A DW "DIVISABLE BY 5 AND 11 $" 
-
+B DW "NOT DIVISABLE BY 5 AND 11 $" 
 .CODE
 MAIN PROC
     MOV AX, @DATA
     MOV DS, AX 
     
-    MOV CX,110
+    MOV CX,111
     MOV AX,CX
     MOV BL,5
     DIV BL 
@@ -30,11 +30,14 @@ MAIN PROC
     LEA DX,A
     MOV AH,9
     INT 21H
-    
+    JMP ALL
     EXIT:
 
+    LEA DX,B
+    MOV AH,9
+    INT 21H
     
- 
+    ALL:
     
     
     
