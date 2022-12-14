@@ -1,0 +1,43 @@
+.MODEL SMALL
+.STACK 100H
+.DATA
+A DW "DIVISABLE BY 5 AND 11 $" 
+
+.CODE
+MAIN PROC
+    MOV AX, @DATA
+    MOV DS, AX 
+    
+    MOV CX,110
+    MOV AX,CX
+    MOV BL,5
+    DIV BL 
+    
+    CMP AH,0
+    JE YES
+    JMP EXIT
+    YES:
+    MOV AX,CX
+    MOV BL,11
+    DIV BL 
+    
+    CMP AH,0
+    JE DONE
+    
+    JMP EXIT
+    DONE: 
+    
+    LEA DX,A
+    MOV AH,9
+    INT 21H
+    
+    EXIT:
+
+    
+ 
+    
+    
+    
+    
+    MAIN ENDP
+END MAIN
