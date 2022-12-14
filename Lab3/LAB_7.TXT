@@ -1,0 +1,44 @@
+.MODEL SMALL
+.STACK 100H
+.DATA 
+A DW "ENTER A HEX DIGIT: $ "
+B DW "IN DECIMAL IT IS: $"
+.CODE
+MAIN PROC
+    MOV AX, @DATA
+    MOV DS, AX
+    
+    LEA DX,A
+    MOV AH,9
+    INT 21H
+    
+    MOV AH,1
+    INT 21H
+    MOV DL,AL  
+    SUB DL,17
+    MOV BL,DL
+    
+    MOV DX,0AH
+    MOV AH,2 
+    INT 21H
+    MOV DX, 0DH
+    INT 21H
+    
+    LEA DX,B
+    MOV AH,9
+    INT 21H
+    
+ 
+    
+    MOV AH,2
+    MOV DL,"1"
+    INT 21H 
+    MOV DL ,BL
+    INT 21H
+       
+    
+    
+    
+    
+    MAIN ENDP
+END MAIN
