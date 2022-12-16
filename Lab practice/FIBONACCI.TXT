@@ -1,0 +1,39 @@
+.MODEL SMALL
+.STACK 100H
+.DATA
+.CODE
+MAIN PROC
+    MOV AX, @DATA
+    MOV DS, AX
+    
+    MOV BH,0
+    MOV BL,1
+    MOV CL,0
+    MOV CH,5
+    
+    MOV DL,BH
+    MOV AH,2 
+    ADD DL,48
+    INT 21H  
+    
+    MOV DL,BL
+    MOV AH,2 
+    ADD DL,48
+    INT 21H
+    
+    OUTPUT:
+    MOV DL,BH
+    ADD DL,BL
+    CMP DL,CH
+    JG BAIRE
+     
+    SUB DL,48 
+    MOV BH,BL
+    MOV BL,DL
+    
+    JMP OUTPUT
+    BAIRE:
+   
+    
+    MAIN ENDP
+END MAIN
