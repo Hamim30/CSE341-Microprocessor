@@ -1,0 +1,42 @@
+.MODEL SMALL
+.STACK 100H
+.DATA
+.CODE
+MAIN PROC
+    MOV AX, @DATA
+    MOV DS, AX
+    
+    MOV AH,1
+    INT 21H
+    MOV CH,0
+    MOV AH,0
+    MOV CL,2
+    
+    AMAR_LOOP:
+    CMP AL,0
+    JE BAIRE
+    DIV CL
+    MOV DL,AH 
+    MOV DH,0
+    PUSH DX
+    MOV AH,0
+    INC CH
+    JMP AMAR_LOOP 
+    BAIRE:
+    
+    
+    MOV CL,CH
+    MOV CH,0
+    OUTPUT:
+    POP DX
+    ADD DX,48
+    MOV AH,2
+    INT 21H
+    
+    LOOP OUTPUT
+    
+    
+   
+    
+    MAIN ENDP
+END MAIN
